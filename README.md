@@ -1,1 +1,1 @@
-# golang_apps
+# Golang Apps for practice 
