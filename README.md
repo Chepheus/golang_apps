@@ -1,7 +1,8 @@
 # Golang Apps for practice
 
 ### Basic web Application
-http://localhost:8081/
+1. go run main.go
+2. http://localhost:8081/
 
 ### Golang lessons
 1. `go run .`
