@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/Chepheus/golang_apps/basic_web_application/helpers"
+	"github.com/Chepheus/golang_apps/basic_web_application/pkg"
 )
 
 func AboutHandler(w http.ResponseWriter, r *http.Request) {
-	helpers.RenderTemplate(w, "about.page.tmpl")
+	pkg.RenderTemplate(w, "about.page.tmpl")
 }
