@@ -2,10 +2,8 @@ package handlers
 
 import (
 	"net/http"
-
-	"github.com/Chepheus/golang_apps/basic_web_application/pkg"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	pkg.RenderTemplate(w, "home.page.tmpl")
+func (h RouteHandler) HomeHandler(w http.ResponseWriter, r *http.Request) {
+	h.templateRenderer.RenderTemplate(w, "home.page.tmpl")
 }
