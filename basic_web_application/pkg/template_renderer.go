@@ -8,6 +8,8 @@ import (
 	"path/filepath"
 )
 
+type TemplateData map[string]interface{}
+
 type TemplateRenderer struct {
 	appConfig AppConfig
 }
@@ -18,7 +20,7 @@ func NewTemplateRenderer(appConfig AppConfig) TemplateRenderer {
 
 var templateCache = make(map[string]*template.Template)
 
-func (tr TemplateRenderer) RenderTemplate(w http.ResponseWriter, tmpl string) {
+func (tr TemplateRenderer) RenderTemplate(w http.ResponseWriter, tmpl string, data *TemplateData) {
 	t, err := tr.getOrCreateCachedTemplate(tmpl)
 	if err != nil {
 		fmt.Println(err)
@@ -26,7 +28,7 @@ func (tr TemplateRenderer) RenderTemplate(w http.ResponseWriter, tmpl string) {
 	}
 
 	buf := new(bytes.Buffer)
-	err = t.Execute(buf, nil)
+	err = t.Execute(buf, data)
 
 	if err != nil {
 		fmt.Println(err)
