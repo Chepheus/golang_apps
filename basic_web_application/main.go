@@ -6,6 +6,7 @@ import (
 
 	"github.com/Chepheus/golang_apps/basic_web_application/handlers"
 	"github.com/Chepheus/golang_apps/basic_web_application/pkg"
+	"github.com/Chepheus/golang_apps/basic_web_application/web"
 )
 
 const port = "8081"
@@ -24,15 +25,16 @@ func main() {
 
 	appConfig := pkg.AppConfig{IsUseCache: true}
 	templateRenderer := pkg.NewTemplateRenderer(appConfig)
-	handler := handlers.NewHandlers(appConfig, templateRenderer)
+	routeHandler := handlers.NewHandlers(appConfig, templateRenderer)
+	srv := &http.Server{
+		Addr:    fmt.Sprintf(":%s", port),
+		Handler: web.Routes(routeHandler),
+	}
 
-	http.HandleFunc("/hello", HelloWorld)
-
-	http.HandleFunc("/", handler.HomeHandler)
-	http.HandleFunc("/about", handler.AboutHandler)
+	//http.HandleFunc("/hello", HelloWorld)
 
 	fmt.Println("Listen port", port)
-	err := http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
+	err := srv.ListenAndServe()
 	if err != nil {
 		fmt.Println(err.Error())
 	}
