@@ -6,6 +6,11 @@
         <div class="col">
             <h1>{{.title}}</h1>
             <a href="/">Home</a>
+            {{if ne .remoteIp ""}}
+                <p>Remote Ip: {{.remoteIp}}</p>
+            {{else}}
+                <p>You should go to <a href="/">Home</a> first!</p>
+            {{end}}
         </div>
     </div>
 </div>

@@ -3,13 +3,13 @@ package handlers
 import "github.com/Chepheus/golang_apps/basic_web_application/pkg"
 
 type RouteHandler struct {
-	appConfig        pkg.AppConfig
+	container        *pkg.Container
 	templateRenderer pkg.TemplateRenderer
 }
 
-func NewHandlers(appConfig pkg.AppConfig, templateRenderer pkg.TemplateRenderer) RouteHandler {
+func NewHandlers(container *pkg.Container, templateRenderer pkg.TemplateRenderer) RouteHandler {
 	return RouteHandler{
-		appConfig:        appConfig,
+		container:        container,
 		templateRenderer: templateRenderer,
 	}
 }

@@ -8,11 +8,12 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-func Routes(rh handlers.RouteHandler) http.Handler {
+func (w Web) Routes(rh handlers.RouteHandler) http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Recoverer)
-	mux.Use(LogUrlToConsole)
+	mux.Use(w.LogUrlToConsole)
+	mux.Use(w.SessionLoad)
 
 	mux.Get("/", rh.HomeHandler)
 	mux.Get("/about", rh.AboutHandler)
