@@ -5,18 +5,20 @@ import (
 	"net/http"
 
 	"github.com/Chepheus/golang_apps/bookingns/pkg"
-	"github.com/go-chi/chi/v5"
+	"github.com/Chepheus/golang_apps/bookingns/web"
 )
 
 const port = "8083"
 
 func main() {
-	appConfig := pkg.AppConfig{IsUseCache: true}
+	appConfig := pkg.AppConfig{IsUseCache: false}
 	tr := pkg.NewTemplateRenderer(appConfig)
+	handler := web.NewHandler(tr)
+	router := web.NewRouter(handler)
 
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", port),
-		Handler: Routes(tr),
+		Handler: router.Routes(),
 	}
 
 	fmt.Println("Listen port", port)
@@ -24,17 +26,4 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-}
-
-func Routes(templateRenderer pkg.TemplateRenderer) http.Handler {
-	mux := chi.NewRouter()
-
-	mux.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		templateRenderer.RenderTemplate(w, "home.page.tmpl", nil)
-	})
-
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-	mux.Handle("/ui/static/*", http.StripPrefix("/ui/static", fileServer))
-
-	return mux
 }
