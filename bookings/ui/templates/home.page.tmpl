@@ -22,8 +22,22 @@
         <div class="col">
             <div class="text-center">
                 <a class="btn btn-success" href="/reservation">Book</a>
+                <button class="btn btn-info json-click">json</button>
             </div>
         </div>
     </div>
 </div>
+{{end}}
+
+{{define "js"}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var jsonButton = document.getElementsByClassName('json-click');
+            jsonButton[0].addEventListener('click', () => {
+                fetch('/json').then(response => response.json()).then(data => {
+                    console.log(data);
+                })
+            });
+        });
+    </script>
 {{end}}

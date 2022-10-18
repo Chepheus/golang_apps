@@ -6,23 +6,34 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form>
+                <form method="post" action="/reservation">
                     <div class="mb-3">
                         <label for="city" class="form-label">City</label>
-                        <input type="text" class="form-control" id="city" aria-describedby="city-help">
-                        <div id="city-help" class="form-text">You should provide city name.</div>
+                        <input type="text" name="city" class="form-control" id="city">
                     </div>
                     <div class="mb-3">
                         <label for="home-number" class="form-label">Home Number</label>
-                        <input type="number" class="form-control" id="home-number">
+                        <input type="number" name="home_number" class="form-control" id="home-number">
                     </div>
                     <div class="mb-3">
                         <label for="date-from" class="form-label">Date From</label>
-                        <input type="date" class="form-control" id="date-from">
+                        <input type="date" name="date_from" class="form-control" id="date-from">
                     </div>
                     <div class="mb-3">
                         <label for="date-to" class="form-label">Date To</label>
-                        <input type="date" class="form-control" id="date-to">
+                        <input type="date" name="date_to" class="form-control" id="date-to">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" name="phone" class="form-control" id="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="email">
                     </div>
                     <button type="submit" class="btn btn-primary">Reserve</button>
                 </form>
