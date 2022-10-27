@@ -22,7 +22,7 @@ func main() {
 		Handler: router.Routes(),
 	}
 
-	fmt.Println("Listen port", port)
+	fmt.Println(fmt.Sprintf("http://localhost:%s", port))
 	err := srv.ListenAndServe()
 	if err != nil {
 		fmt.Println(err.Error())

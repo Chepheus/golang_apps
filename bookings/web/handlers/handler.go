@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/Chepheus/golang_apps/bookingns/pkg"
+	"github.com/Chepheus/golang_apps/bookingns/pkg/forms"
 )
 
 type Handler struct {
@@ -34,10 +35,8 @@ func (h Handler) CreateReservation(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	email := r.Form.Get("email")
-	city := r.Form.Get("city")
+	form, err := forms.NewReservationForm(r.Form)
+	fmt.Println(form.GetErrors())
 
-	fmt.Println("Email and city: ", email, city)
-
-	_, _ = w.Write([]byte(fmt.Sprintf("test %s %s", email, city)))
+	_, _ = w.Write([]byte("test"))
 }
